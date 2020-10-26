@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 #include "FX.hpp"
 
-#define DELIMITER "------------------------------------------------"
-
 bool comp::operator()(const std::pair<std::string, std::pair<double, double>>& firstPair,
      const std::pair<std::string, std::pair<double, double>>& secPair) const{
     // compare function for the set of pairs in chronological order

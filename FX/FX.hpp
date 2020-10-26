@@ -1,6 +1,8 @@
 #ifndef FX_H
 #define FX_H
 
+#define DELIMITER "-----------------------------------------------------------"
+
 struct comp {
 	bool operator()(const std::pair<std::string, std::pair<double, double>>& firstPair,
             const std::pair<std::string, std::pair<double, double>>& secPair) const;
