@@ -26,7 +26,7 @@ class Test {
     }
 
     void printOutput() {
-        fx->displayTopMostRecentPricesForCurrencyPair("USD", "GBP", 5);
+        fx->displayTopMostRecentPricesForCurrencyPair("USD", "EUR", 5);
         fx->displayTop10RecentPrices();
     }
 };
