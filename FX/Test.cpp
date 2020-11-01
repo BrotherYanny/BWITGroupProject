@@ -31,6 +31,18 @@ class Test {
         fx->displayTop10RecentPrices();
     }
 
+    void bestPrice() {
+        std::string fromCurrency, toCurrency;
+	    std::cout << "INSERT fromCurrency = ";
+	    std::getline(std::cin, fromCurrency);
+
+        std::cout << "INSERT toCurrency = ";
+        std::getline(std::cin, toCurrency);
+
+        fx->displayBestPriceToBuyCurrency(fromCurrency, toCurrency);
+        std::cout << std::endl << DELIMITER << std::endl;
+    }
+
     void addFX() {
         std::string fromCurrency, toCurrency, timeString, priceString;
         double timestamp, price;
@@ -99,6 +111,9 @@ class Test {
             } else if (command == "displayTopTen") {
                 displayTopTen();
 
+            } else if (command == "bestPrice") {
+                bestPrice();
+            
             } else {
                 wrongCommand();
             }
