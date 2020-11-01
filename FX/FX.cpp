@@ -91,12 +91,13 @@ void FX::BellmanFord(std::string fromCurrency, std::string toCurrency) {
 void FX::addToGraph(std::string currency, std::string fromCurrency, std::string toCurrency) {
     auto latestPrice = allPairCurrencies[currency].begin();
     std::pair<double, double> priceTime = *latestPrice;
-  
+    
+    // If the currency does not exist in the graph, add it.
     if (graphOfFX.find(fromCurrency) == graphOfFX.end()) {
         graphOfFX.insert({fromCurrency, std::unordered_map<std::string, double>()});
-
     }
-    // Adding or updating latest price for a pair of currencies
+
+    // Adding or updating latest price for a pair of currencies.
     auto &mapOfSrc = graphOfFX[fromCurrency];
     if (mapOfSrc.find(toCurrency) == mapOfSrc.end()) {
         mapOfSrc.insert({toCurrency, priceTime.second});
@@ -110,10 +111,12 @@ void FX::addForeignExchangeValue(std::string fromCurrency, std::string toCurrenc
     currencies.insert(fromCurrency); // O(1)
     currencies.insert(toCurrency); // O(1)
     std::string currency = computeCurrencyName(fromCurrency, toCurrency);
+
     // Inserting a new pair of (time, price) in the set for the currency.
     // N = number of prices for a currency
     allPairCurrencies[currency].insert({timestamp, price}); // O(logN)
     std::pair<double, double> timePrice = std::make_pair(timestamp, price);
+
     addToTopTen(currency, timePrice); // O(1)
     addToGraph(currency, fromCurrency, toCurrency); // O(1)
 }
@@ -125,7 +128,8 @@ void FX::displayTopMostRecentPricesForCurrencyPair(std::string fromCurrency, std
 
     std::cout << std:: endl << "THESE ARE TOP " << numberOfPrices << " MOST RECENT PRICES FOR " << currency << std::endl;
     std::cout << DELIMITER << std::endl;
-    // Printing top most recent number of prices for a certain currency = O(min(numberOfPrices, N)).
+
+    // Printing top most recent number of prices for a certain currency pair = O(min(numberOfPrices, N)).
     for (auto timePrice : setOfPrices) {
         if (numberOfPrices--) {
             std::string time = std::to_string(timePrice.first);
@@ -160,6 +164,7 @@ void FX::displayBestPriceToBuyCurrency(std::string fromCurrency, std::string toC
             }
             std::cout << std::endl;
     }
+    
     // Using Bellman-Ford for finding minimum price, this way it will not be a problem if there is a cycle.
     BellmanFord(fromCurrency, toCurrency); // O(E * V) where E-number of pairs, V-number of currencies
 }
