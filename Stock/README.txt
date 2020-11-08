@@ -1,6 +1,7 @@
 TASK: STOCK FUNCTION
 NAME: Iulia Corici
 
+Please note that you will need a Linux based (sub)system for compiling the project!
 A little help in understanding what I have done:
 
 -> to compile the task, you only need to run "make" in the terminal;
@@ -11,6 +12,7 @@ A little help in understanding what I have done:
 
     - for "addBasicSecurityInfo(securityID, industry, description, listOfBoardMemebers)"
         just type "addInfo" and the fields for the parameters will be nicely displayed
+        please press "ENTER" after inserting the wanted field to go to the next field
         Here is an example: 
 
         COMMAND: addInfo
@@ -22,6 +24,7 @@ A little help in understanding what I have done:
 -------------------------------------------------------------------------------------------------
     - for "addTick(securityID, price, timestamp)"
         just type "addTick" and the fields for the parameters will be nicely displayed
+        please press "ENTER" after inserting the wanted field to go to the next field
         Here is an example: 
 
         COMMAND: addTick
@@ -31,6 +34,7 @@ A little help in understanding what I have done:
 ---------------------------------------------------------------------------------------------------
     - for "allTimeHigh(securityID)"
         just type "highest" and the fields for the parameters will be nicely displayed
+        please press "ENTER" after inserting the wanted field to go to the next field
         Here is an example: 
 
         COMMAND: highest
@@ -39,6 +43,7 @@ A little help in understanding what I have done:
 ---------------------------------------------------------------------------------------------------
     - for "allTimeLow(securityID)"
         just type "lowest" and the fields for the parameters will be nicely displayed
+        please press "ENTER" after inserting the wanted field to go to the next field
         Here is an example: 
 
         COMMAND: lowest
@@ -47,6 +52,7 @@ A little help in understanding what I have done:
 ---------------------------------------------------------------------------------------------------
     - for "getAllPriceHistory(securityID, startTime, endTime)"
         just type "history" and the fields for the parameters will be nicely displayed
+        please press "ENTER" after inserting the wanted field to go to the next field
         Here is an example:
 
         COMMAND: history
@@ -69,3 +75,6 @@ A little help in understanding what I have done:
         TIME: 67 with STOCK PRICE: 2
 
 --------------------------------------------------------------------------------------------------------
+    - for exiting the execution of the project just type "exit"
+        Here is an example:
+        COMMAND: exit
