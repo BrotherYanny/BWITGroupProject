@@ -11,16 +11,15 @@ public class Calendar {
   }
 
   void addMeeting(List<Integer> listOfUsers, LocalDate calendarDay, BTime startTime, BTime endTime, String topic) {
-    //is listOfUsers going to be a list of User Objects, or a list of userIDs? Assume ID I think
     for (Integer user : listOfUsers) {
-      if (!allCalendars.containsKey(user)) {
+
+      if(!allCalendars.containsKey(user))
         allCalendars.put(user, new HashMap<LocalDate, HashMap<Pair<BTime,BTime>, String>>());
+      if(!allCalendars.get(user).containsKey(calendarDay))
         allCalendars.get(user).put(calendarDay, new HashMap<Pair<BTime,BTime>, String>());
-        allCalendars.get(user).get(calendarDay).put(new Pair(startTime, endTime), topic);
-        System.out.println(topic + " scheduled for " + startTime.toString() + "-" + endTime + " on " + calendarDay + " for user " + user);
-      }
-      else {
-        for (Pair<BTime, BTime> timePair : allCalendars.get(user).get(calendarDay).keySet()) {
+
+      for (Pair<BTime, BTime> timePair : allCalendars.get(user).get(calendarDay).keySet()) {
+        // TODO: limit the iteration, try String array[48]?
           if ((startTime.getHour() == timePair.getKey().getHour() && startTime.getMinute() == timePair.getKey().getMinute()) //start times are the same
               || (timePair.getKey().before(startTime) && startTime.before(timePair.getValue())) //time1 starts during time2
               || (timePair.getKey().before(endTime) && endTime.before(timePair.getValue())) //time1 ends during time2
@@ -28,26 +27,24 @@ public class Calendar {
               || (endTime.before(timePair.getKey()) && timePair.getValue().before(endTime)) //time2 ends during time1
               || (timePair.getKey().before(startTime) && endTime.before(timePair.getValue())) //time1 occurs during time2
               || (startTime.before(timePair.getKey()) && timePair.getValue().before(endTime))) { //time2 occurs during time1
-                System.out.println("User " + user + " has a meeting scheduled at this time. " + topic + " could not be scheduled.");
+                System.out.println("User " + user + " has a meeting scheduled at this time. " + topic + " has not been scheduled for any user.");
                 return;
-                // right now this interrupts the function, so if previous people in the list had the meeting successfully added,
-                // those meetings would not be cancelled -do we want this?
-                // maybe implement it so that all meetings are added at the end after everyone's schedules are checked?
               }
         }
-        allCalendars.get(user).get(calendarDay).put(new Pair(startTime, endTime), topic);
-        System.out.println(topic + " scheduled for " + startTime.toString() + "-" + endTime.toString() + " on " + calendarDay + " for user " + user);
-      }
+    }
+    for (Integer user : listOfUsers) {
+      allCalendars.get(user).get(calendarDay).put(new Pair(startTime, endTime), topic);
+      System.out.println(topic + " scheduled for " + startTime.toString() + "-" + endTime.toString() + " on " + calendarDay + " for user " + user);
     }
   }
 
   void displayUsersDay(int userID) {
+
     if (!allCalendars.containsKey(userID))
       return;
     System.out.println("User " + userID + "'s calendar for today is as follows: ");
-    // LinkedList<Pair<Pair<BTime,BTime>, String>> orderedDayCalendar = new LinkedList<>();
+     LinkedList<Pair<Pair<BTime,BTime>, String>> orderedDayCalendar = new LinkedList<>();
     LocalDate date = LocalDate.now();
-    //how to sort by time?
     if (allCalendars.containsKey(userID)) {
       for (Map.Entry<Pair<BTime, BTime>, String> timePair : allCalendars.get(userID).get(date).entrySet()) {
         System.out.println(timePair.getKey().getKey() + "-" + timePair.getKey().getValue() + ": " + timePair.getValue());

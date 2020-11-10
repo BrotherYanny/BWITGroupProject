@@ -25,6 +25,7 @@ public class User {
   public String getName() {
     return name;
   }
+
   public LocalDate getJoiningDay() {
     return joiningDay;
   }
