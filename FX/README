@@ -1,0 +1,77 @@
+TASK: FX FUNCTION
+NAME: Iulia Corici
+
+Please note that you will need a Linux based (sub)system for compiling the project!
+A little help in understanding what I have done:
+
+-> to compile the task, you only need to run "make" in the terminal;
+(this way all the files will be compiled using the build rule from the Makefile)
+-> to clear the object and executables files, please run "make clean" in the terminal.
+
+-> in order to test any method from the FX task, you will need these guidelines:
+
+    - for "addForeignExchangeValue(fromCurrency, toCurrency, price, timestamp)"
+        just type "addFX" and the fields for the parameters will be nicely displayed
+        please press "ENTER" after inserting the wanted field to go to the next field
+        Here is an example:
+
+        COMMAND: addFX
+        INSERT fromCurrency = USD
+        INSERT toCurrency = EUR
+        INSERT price = 12
+        INSERT timestamp = 123
+
+-------------------------------------------------------------------------------------------------
+    - for "displayTop10RecentPrices() "
+        just type "displayTopTen" and the fields for the parameters will be nicely displayed
+        please press "ENTER" after inserting the wanted field to go to the next field
+        Here is an example: 
+
+        COMMAND: displayTopTen
+
+        THESE ARE TOP 1O RECENT PRICES 
+        -----------------------------------------------------------
+        USD-EUR at timestamp: 123.000000, and PRICE: 12.000000
+        CAD-EUR at timestamp: 76.000000, and PRICE: 1.500000
+        USD-CAD at timestamp: 45.000000, and PRICE: 6.000000
+
+---------------------------------------------------------------------------------------------------
+    - for "displayTopMostRecentPricesForCurrencyPair(fromCurrency, toCurrency, numberOfPrices) "
+        just type "displayTopMostRecent" and the fields for the parameters will be nicely displayed
+        please press "ENTER" after inserting the wanted field to go to the next field
+        Here is an example: 
+
+        COMMAND: displayTopMostRecent
+        INSERT fromCurrency = USD
+        INSERT toCurrency = CAD
+        INSERT number = 3
+
+        THESE ARE TOP 3 MOST RECENT PRICES FOR USD-CAD
+        -----------------------------------------------------------
+        timestamp: 45.000000, and price: 6.000000
+
+---------------------------------------------------------------------------------------------------
+    - for "displayBestPriceToBuyCurrency(fromCurrency, toCurrency)"
+        just type "bestPrice" and the fields for the parameters will be nicely displayed
+        please press "ENTER" after inserting the wanted field to go to the next field
+        Here is an example:
+
+        COMMAND: bestPrice
+        INSERT fromCurrency = USD
+        INSERT toCurrency = EUR
+
+        THE GRAPH OF CURRENCIES:
+        CAD is the SRC and
+            EUR is the DEST at price 1.5
+
+        USD is the SRC and
+            CAD is the DEST at price 6
+            EUR is the DEST at price 12
+
+
+        BEST PRICE for USD-EUR is 9
+
+--------------------------------------------------------------------------------------------------------
+    - for exiting the execution of the project just type "exit"
+        Here is an example:
+        COMMAND: exit
